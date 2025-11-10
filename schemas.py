@@ -41,8 +41,12 @@ class Product(BaseModel):
 # Add your own schemas here:
 # --------------------------------------------------
 
-# Note: The Flames database viewer will automatically:
-# 1. Read these schemas from GET /schema endpoint
-# 2. Use them for document validation when creating/editing
-# 3. Handle all database operations (CRUD) directly
-# 4. You don't need to create any database endpoints!
+class Task(BaseModel):
+    """
+    Tasks collection schema
+    Collection name: "task"
+    """
+    title: str = Field(..., min_length=1, max_length=200, description="Quest title")
+    description: Optional[str] = Field(None, max_length=1000, description="Quest details")
+    completed: bool = Field(False, description="Completion status")
+    priority: Optional[str] = Field(None, description="Priority tier: common, rare, epic, legendary")
